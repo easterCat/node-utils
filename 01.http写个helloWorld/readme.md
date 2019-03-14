@@ -741,6 +741,44 @@ response 对象由 HTTP 服务器在内部创建,表示服务器端的 HTTP 回�
 - write(str)：指定 HTTP 回应的内容。
 - end()：发送 HTTP 回应。
 
+### 处理 get 请求
+
+get 参数在 request 的 url 属性上,通过 url.parse 将 url 转化为对象
+
+```
+http
+  .createServer((request, response) => {
+    let pathname = url.parse(request.url).pathname;
+    if (pathname !== "/favicon.ico") {
+      if(pathname==="/login"){
+         response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
+         response.write("我就是get");
+         response.end();
+      }
+    }
+  })
+  .listen(8888, "localhost");
+```
+
+### 处理 post 请求
+
+当客户端采用 POST 方法发送数据时，服务器端可以对 data 和 end 两个事件，设立监听函数,data 事件会在数据接收过程中，每收到一段数据就触发一次，接收到的数据被传入回调函数。end 事件则是在所有数据接收完成后触发
+
+```
+    "/login": (request, response) => {
+      let totalData = "";
+      request.on("data", data => {
+        totalData += data;
+      });
+
+      request.on("end", () => {
+        response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
+        response.write(totalData); //username=liudehua&password=123456&remark=%E6%88%91%E6%98%AF%E5%88%98%E5%BE%B7%E5%8D%8E%2C%E6%88%91%E6%98%AF%E4%B8%80%E5%90%8D%E6%AD%8C%E6%89%8B
+        response.end();
+      });
+    },
+```
+
 ### 路由的简单应用
 
 ```
