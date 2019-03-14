@@ -1,4 +1,4 @@
-## http 与 hello world
+## http 模块 与 hello world
 
 ### hello world
 
@@ -779,6 +779,101 @@ function createForm(response) {
 ```
 
 > 路由就是根据不同的选择执行不同的代码
+
+### url.parse 方法
+
+解析 URL 字符串并返回 URL 对象。如果 urlString 不是字符串，则抛出 TypeError。如果 auth 属性存在但无法解码，则抛出 URIError。
+
+#### 语法
+
+url.parse(urlStr, [parseQueryString], [slashesDenoteHost])
+
+#### 参数
+
+- urlStr:要解析的 URL 字符串
+- parseQueryString:如果设为 true，则返回的 URL 对象的 query 属性会是一个使用 querystring 模块的 parse() 生成的对象。 如果设为 false，则 query 会是一个未解析未解码的字符串。 默认为 false
+- slashesDenoteHost:如果设为 true，则 // 之后至下一个 / 之前的字符串会解析作为 host。 例如， //foo/bar 会解析为 {host: 'foo', pathname: '/bar'} 而不是 {pathname: '//foo/bar'}。 默认为 false。
+
+```
+Url {
+  protocol: 'http:',
+  slashes: true,
+  auth: null,
+  host: 'localhost:8888',
+  port: '8888',
+  hostname: 'localhost',
+  hash: null,
+  search: '?username=liudehua&password=123456',
+  query: 'username=liudehua&password=123456',
+  pathname: '/login',
+  path: '/login?username=liudehua&password=123456',
+  href:
+   'http://localhost:8888/login?username=liudehua&password=123456' }
+```
+
+#### 用处
+
+```
+//当路径为http://127.0.0.1:8888/register
+console.log(pathname);// /register
+console.log(request.url);// /register
+
+//当路径为http://127.0.0.1:8888/register?username=liudehua&password=123456
+console.log(pathname);// /register
+console.log(request.url);// /register?username=liudehua&password=123456
+```
+
+#### 路由匹配
+
+```
+let http = require("http");
+let url = require("url");
+
+http
+  .createServer((request, response) => {
+    let pathname = url.parse(request.url).pathname;
+    if (pathname !== "/favicon.ico") {
+      router(pathname)(request, response);
+    }
+  })
+  .listen(8888, "localhost");
+
+function router(path) {
+  let router = {
+    "/": (request, response) => {
+      response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
+      response.end("你好,世界");
+    },
+    "/login": (request, response) => {
+      response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
+      createForm(response);
+      response.end("登录");
+    },
+    "/register": (request, response) => {
+      response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
+      createForm(response);
+      response.end("注册");
+    },
+    "/404": (request, response) => {
+      response.writeHead(404, { "Content-Type": "text/plain;charset=utf-8" });
+      response.end("404找不到相关文件");
+    }
+  };
+
+  !Object.keys(router).includes(path) && (path = "/404");
+
+  return router[path];
+}
+
+function createForm(response) {
+  response.write("用户名:<input type='text' name='username'>");
+  response.write("</br>");
+  response.write("密码:<input type='text' name='password'>");
+  response.write("</br>");
+}
+```
+
+之后分别输入 localhost:8888,localhost:8888/haha,localhost:8888/login,localhost:8888/register
 
 [Node.js http 文档](http://nodejs.cn/api/http.html)
 [koajs](https://github.com/koajs/koa#readme)
