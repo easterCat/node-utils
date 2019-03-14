@@ -1,0 +1,38 @@
+{
+  "name": "base_22_cblog",
+  "version": "1.0.0",
+  "description": "this is a blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor --harmony server.js"
+  },
+  "author": "easterCat",
+  "license": "ISC",
+  "dependencies": {
+    "Q": "^1.0.0",
+    "body-parser": "^1.18.2",
+    "config-lite": "^2.1.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.0",
+    "cookie": "^0.3.1",
+    "cookie-parser": "^1.4.3",
+    "cookie-signature": "^1.0.6",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-formidable": "^1.0.0",
+    "express-session": "^1.15.6",
+    "express-winston": "^2.4.0",
+    "lodash": "^4.17.4",
+    "marked": "^0.3.6",
+    "moment": "^2.19.1",
+    "moment-timezone": "^0.5.13",
+    "mongolass": "^3.1.5",
+    "mongoose": "^4.12.3",
+    "multer": "^1.3.0",
+    "objectid-to-timestamp": "^1.3.0",
+    "q": "^1.5.1",
+    "sha1": "^1.1.1",
+    "winston": "^2.4.0"
+  }
+}

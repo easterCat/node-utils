@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+    <script>
+        var lastMessage;
+
+        window.onload = function () {
+            var ws = new WebSocket('ws:localhost:3001');
+            ws.onopen = function () {
+                ping();
+            };
+            ws.onmessage = function (ev) {
+                console.log('got:' + ev.data);
+                document.getElementById('latency').innerHTML = new Date - lastMessage;
+                ping();
+            };
+            function ping() {
+                lastMessage = +new Date;
+                ws.send('今天是个好日子，我们一起上街买衣服');
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>websocket echo </h1>
+<h2>lasteny: <span id="latency"></span>ms</h2>
+</body>
+</html>

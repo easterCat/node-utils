@@ -1,0 +1,21 @@
+<%- include('./layout/header') %>
+
+<div class="personal-content">
+    <div class="item">
+        <div class="image">
+            <img class="ui small circular image" src="../images/<%= personal.avatar %>">
+        </div>
+        <div class="content">
+            <a class="header"><%= personal.name %></a>
+            <div class="meta">
+                <span><%= personal.bio %></span>
+            </div>
+            <div class="description">
+                <p></p>
+            </div>
+            <div class="extra"><%= personal.created_at %></div>
+        </div>
+    </div>
+</div>
+
+<%- include('./layout/footer') %>

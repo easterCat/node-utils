@@ -1,0 +1,16 @@
+{
+  "name": "base_17_express",
+  "version": "1.0.0",
+  "description": "the study about nodejs 17 module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "supervisor --harmony server.js"
+  },
+  "author": "easterCat",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.15.4"
+  }
+}
