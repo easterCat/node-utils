@@ -5,6 +5,8 @@
 let http = require("http");
 let url = require("url");
 let qs = require("querystring");
+let path = require("path");
+let { write } = require("./file.js");
 
 http
   .createServer((request, response) => {
@@ -17,7 +19,7 @@ http
 
 console.log("server running at http://127.0.0.1:9527/");
 
-function router(path) {
+function router(p) {
   let router = {
     "/": (request, response) => {
       response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
@@ -30,15 +32,12 @@ function router(path) {
         totalData += data;
       });
 
-      request.on("end", () => {
+      request.on("end", async () => {
         response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
         //username=liudehua&password=123456&remark=%E6%88%91%E6%98%AF%E5%88%98%E5%BE%B7%E5%8D%8E%2C%E6%88%91%E6%98%AF%E4%B8%80%E5%90%8D%E6%AD%8C%E6%89%8B
         //username=liudehua&password=123456&remark=我是刘德华,我是一名歌手
-        let decodeData = decodeURIComponent(totalData); //解决中文乱码用的
-        let parseData = qs.parse(decodeData);
-        response.write(parseData);
-        response.write("</br>");
-        response.write(decodeData);
+        let decodeData = decodeURIComponent(totalData); //解决中文乱码
+        await write(path.join(__dirname, "/user.txt"), decodeData);
         response.end();
       });
     },
@@ -53,9 +52,9 @@ function router(path) {
     }
   };
 
-  !Object.keys(router).includes(path) && (path = "/404");
+  !Object.keys(router).includes(p) && (p = "/404");
 
-  return router[path];
+  return router[p];
 }
 
 function createForm(response) {
