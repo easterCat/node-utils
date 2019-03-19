@@ -300,7 +300,7 @@ module.exports = {
 
 然后控制台输出是"我在里面,我在里面,我在里面,我在里面,我在外面",async/await 的同步终究是个异步,只是在代码块中执行像同步
 
-![01]()
+![01](https://github.com/easterCat/node-utils/blob/master/02.fs%E5%86%99%E4%B8%AAhelloWorld/img/01.png?raw=true)
 
 ### 文件夹操作 readdir
 
@@ -320,7 +320,7 @@ module.exports = {
     },
 ```
 
-![02]()
+![02](https://github.com/easterCat/node-utils/blob/master/02.fs%E5%86%99%E4%B8%AAhelloWorld/img/02.png?raw=true)
 
 ### 文件夹操作 rmdir
 
