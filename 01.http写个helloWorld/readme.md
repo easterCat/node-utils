@@ -913,7 +913,11 @@ function createForm(response) {
 
 之后分别输入 localhost:8888,localhost:8888/haha,localhost:8888/login,localhost:8888/register
 
+## Docs
+
 [Node.js http 文档](http://nodejs.cn/api/http.html)
+[MDN HTTP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP)
 [koajs](https://github.com/koajs/koa#readme)
 [koa-docs-Zh-CN](https://github.com/demopark/koa-docs-Zh-CN)
 [Http 模块](http://javascript.ruanyifeng.com/nodejs/http.html)
+[HTTP 消息头（HTTP headers）－常用的 HTTP 请求头与响应头](https://itbilu.com/other/relate/EJ3fKUwUx.html)
