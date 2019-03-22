@@ -16,7 +16,7 @@ class Child extends Par {
   }
 
   async init(res) {
-    for (let i = startPage; i <= endPage; i++) {
+    for (let i = this.start; i <= this.end; i++) {
       await this.getAndSaveImg(i);
     }
 
@@ -55,7 +55,7 @@ class Child extends Par {
       pageImgSetUrl = `${this.siteUrl}${page}.html`;
     }
 
-    let homeBody = await handleRequestByPromise(pageImgSetUrl);
+    let homeBody = await handleRequestByPromise({ url: pageImgSetUrl });
     let $ = cheerio.load(homeBody);
     let lis = $(".hezi li");
 

@@ -1,5 +1,5 @@
 let fs = require("fs");
-let { remove } = require("file");
+let { remove } = require("./file");
 
 module.exports = {
   mkdir,
@@ -27,12 +27,12 @@ function rmdir(path) {
   return new Promise(async (resolve, reject) => {
     let files = await readdir(path);
 
-    files.forEach(element => {
+    files.forEach(async element => {
       let stat = fs.statSync(path + "/" + file);
 
       if (stat.isDirectory()) {
       } else {
-          await remove();
+        await remove();
       }
     });
     fs.rmdir(path, err => (err === null ? resolve(path) : reject(err)));

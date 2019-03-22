@@ -387,6 +387,10 @@ typings/
 # dotenv environment variables file
 .env
 
+
+
+//自定义
 dist/
+mrw/
 dist.zip
 .project

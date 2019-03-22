@@ -17,15 +17,15 @@ function handleRequestByPromise(options) {
         Referer: "https://www.meituri.com"
       }
     },
-    op
+    options
   );
 
-  if (options.url === "") {
+  if (op.url === "") {
     throw new Error("请求的url地址不正确");
   }
 
-  const promsie = new Promise(function(resolve, reject) {
-    request(options, (err, response, body) => {
+  const promise = new Promise(function(resolve, reject) {
+    request(op, (err, response, body) => {
       if (err) reject(err);
 
       if (response && response.statusCode === 200) {

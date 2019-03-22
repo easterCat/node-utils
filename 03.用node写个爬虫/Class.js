@@ -3,7 +3,7 @@
  */
 
 let fs = require("fs");
-let {handleRequestByPromise} = require("./utils/ajax");
+let { handleRequestByPromise } = require("./utils/ajax");
 
 class Par {
   constructor() {
@@ -12,8 +12,8 @@ class Par {
     this.imageUrl = "https://ii.hywly.com/a/1/25396/40.jpg"; //https://ii.hywly.com/a/1/25373/1.jpg
   }
 
-  downloadImg(url, dest){
-    let res = await handleRequestByPromise(url);
+  async downloadImg(url, dest) {
+    let res = await handleRequestByPromise({ url });
     fs.writeFileSync(dest, res, {
       encoding: "binary"
     });
