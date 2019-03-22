@@ -2,8 +2,8 @@
 
 首先我们需要一个坚定的目标,于是找个一个比较好看一些网站,将一些信息统计一下,比如 url/tag/title/number...等信息
 
-![1]()
-![2]()
+![1](https://github.com/easterCat/node-utils/blob/master/03.%E7%94%A8node%E5%86%99%E4%B8%AA%E7%88%AC%E8%99%AB/img/1.png?raw=true)
+![2](https://github.com/easterCat/node-utils/blob/master/03.%E7%94%A8node%E5%86%99%E4%B8%AA%E7%88%AC%E8%99%AB/img/2.png?raw=true)
 
 ```
 init(1, 2); //设置页数,现在是1-2页
