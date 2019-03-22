@@ -79,7 +79,75 @@ function handleRequestByPromise(options) {
 
 ## cheerio
 
-爬虫需要抓取页面上特定的信息.需要依据一些标识符去拿到想要的信息,不如 id.比如 class.cheerio 就是这么一个工具,将网站信息转化成可以直接用 jquery 语法进行提取的一个模块.
+[官网](https://cheerio.js.org/)
+
+爬虫需要抓取页面上特定的信息.需要依据一些标识符去拿到想要的信息,不如 id.比如 class.cheerio 就是这么一个工具,将网站信息转化成可以直接用 jquery 的 dom 进行提取的一个模块.cheerio 的出现就是用于服务端需要对 dom 进行操作的地方.
+
+基本使用
+
+```
+let cheerio = require('cheerio');
+let $ = cheerio.load("<div id='helloworld'>hello world</div>", {ignoreWhitespace: true...})
+```
+
+options 用来进行一些特别的定制[更多](https://github.com/fb55/htmlparser2/wiki/Parser-options)
+
+#### 选择器
+
+基本和 jquery 一样
+
+- \$( selector, [context], [root] )
+
+```
+$(".helloworld").text();
+```
+
+#### 属性操作
+
+- .attr(name, value)
+- .removeAtrr(name)
+- .hasClass(className)
+- .addClass(className)
+- .remoteClass([className])
+
+#### 遍历
+
+- .find(selector)
+- .parent()
+- .next()
+- .prev()
+- .siblings()
+- .children( selector )
+- .each( function(index, element) )
+- .map( function(index, element) )
+- .filter( selector )
+- .filter( function(index) )
+- .first()
+- .last()
+- .eq(i)
+
+#### 操作 DOM
+
+- .append( content, [content, ...] )
+- .prepend( content, [content, ...] )
+- .after( content, [content, ...] )
+- .before( content, [content, ...] )
+- .remove( [selector] )
+- .replaceWith( content )
+- .empty()
+- .html( [htmlString] )
+- .text( [textString] )
+
+#### 其他
+
+- \$.html()
+- \$('ul').text()
+- .toArray()
+- .clone()
+- \$.root()
+- \$.contains( container, contained )
+
+在项目中使用
 
 ```
   let homeBody = await handleRequestByPromise({ url: pageImgSetUrl });
@@ -327,5 +395,6 @@ function insert(arr) {
 - [download](https://www.npmjs.com/package/download)
 - [Node.js Request+Cheerio 实现一个小爬虫-番外篇：代理设置](https://www.jianshu.com/p/fb2ea27d8587)
 - [nodejs 爬取网页出现乱码的解决方案](https://cnodejs.org/topic/5034b141f767cc9a51baf9b0)
+- [Nodejs 爬取 10G 妹子套图 cheerio](https://segmentfault.com/a/1190000009735225)
 
-声明:仅供学习,不可用于商业用途
+  声明:仅供学习,不可用于商业用途
