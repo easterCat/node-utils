@@ -41,7 +41,7 @@ views/index.html/index.js/index.css
 </html>
 ```
 
-![01]()
+![01](https://github.com/easterCat/node-utils/blob/master/04.node%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/img/01.png?raw=true)
 但是打开之后什么都不能看,css 和 js 在控制台都是 404 显示.因为服务器没有写相应的代码去处理这些文件,所以接收到请求,服务器也是一脸茫然,不知道究竟要干什么.
 
 > 所有我们要对请求的资源做出相对应的回答,那怕是个 404
@@ -186,7 +186,7 @@ window.onload = function() {
 };
 ```
 
-![02]()
+![02](https://github.com/easterCat/node-utils/blob/master/04.node%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/img/02.png?raw=true)
 
 当然,正常的写真集不是这样做的,而是通过数据库存储硬盘路径存放地址,然后返回给前端 url+path 的形式,路径也不会这么长.这里只是处理静态文件.
 
