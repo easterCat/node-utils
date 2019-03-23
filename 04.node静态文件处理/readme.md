@@ -2,7 +2,7 @@
 
 一般后端进行静态文件处理都是使用 Apache nginx 等静态 web 服务器,但是既然使用 node 了,就用 node 实现以下静态服务器吧.
 
-之前弄了不少充满艺术的数据,就弄个网站进行艺术欣赏吧
+之前弄了不少充满艺术的数据,就弄个页面进行艺术欣赏吧
 
 app.js
 
@@ -100,6 +100,7 @@ function assets(p) {
   let ext = path.extname(p);
   ext = ext ? ext.slice(1) : "unknown";
   let contentType = getMime(ext);
+  contentType += ";charset=utf-8";
   let filePath;
 
   if (/image/.test(contentType)) {
@@ -122,6 +123,8 @@ function assets(p) {
 ```
 
 #### 我们需要根据文件类型做相应处理
+
+对不同的文件进行不同的响应头处理
 
 ```
 module.exports = {
@@ -192,6 +195,9 @@ window.onload = function() {
 
 ## Docs
 
+- [node 的 mime 模块](https://www.npmjs.com/package/mime)
+- [常见的 MIME 类型](https://blog.csdn.net/daily886/article/details/79068844)
+- [fs 模块 -- JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/nodejs/fs.html#toc8)
 - [用原生 Node 实现一个静态 web 服务器](https://blog.csdn.net/weixin_37823121/article/details/82109562)
 
   声明:仅供学习,不可用于商业用途

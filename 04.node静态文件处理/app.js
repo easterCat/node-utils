@@ -23,6 +23,8 @@ http
       } else {
         assets(pathname)(request, response);
       }
+    } else {
+      response.end();
     }
   })
   .listen(9527);
@@ -55,6 +57,7 @@ function assets(p) {
   let ext = path.extname(p);
   ext = ext ? ext.slice(1) : "unknown";
   let contentType = getMime(ext);
+  contentType += ";charset=utf-8";
   let filePath;
 
   if (/image/.test(contentType)) {
