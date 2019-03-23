@@ -4,6 +4,8 @@
 
 let http = require("http");
 let url = require("url");
+let path = require("path");
+let fs = require("fs");
 let Extend = require("./Extend");
 let xz = new Extend(1, 2);
 
@@ -21,6 +23,8 @@ function router(p) {
   let router = {
     "/": (request, response) => {
       response.writeHead(200, { "Content-type": "text/html;charset=utf-8" });
+      let file = fs.createReadStream(path.join(__dirname, "/views/index.html"));
+      file.pipe(response);
       response.end();
     },
     "/xz": async (request, response) => {

@@ -68,7 +68,12 @@ function processRequest(request, response) {
           var flag = false;
           for (var file of files) {
             if (file === "index.html") {
-              readFile(filePath + (filePath[filePath.length - 1] == "/" ? "" : "/") + "index.html", "text/html");
+              readFile(
+                filePath +
+                  (filePath[filePath.length - 1] == "/" ? "" : "/") +
+                  "index.html",
+                "text/html"
+              );
               flag = true;
               break;
             }
