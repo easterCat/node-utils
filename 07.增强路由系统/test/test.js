@@ -25,6 +25,11 @@ app.get("/", function (req, res) {
     );
 });
 
+app.post("/", function (req, res) {
+    res.writeHead(200, {"Content-Type": "text/plain;charset=utf-8"});
+    res.end('post');
+});
+
 app.listen(3333, function () {
     console.log("listen at localhost:3333");
 });
