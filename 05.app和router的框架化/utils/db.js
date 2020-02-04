@@ -2,11 +2,11 @@ const fs = require("fs");
 const mysql = require("mysql");
 const path_dir = "D:\\data\\wwwroot\\xiezhenji.web\\static\\mrw\\";
 const connection = mysql.createConnection({
-  host: "192.168.0.164",
+  host: "localhost",
   port: "3306",
-  user: "xiezhenji",
-  password: "iJAuzTbdrDJDswjPN6!*M*6%Ne",
-  database: "xiezhenji"
+  user: "root",
+  password: "1234",
+  database: "xzj"
 });
 
 module.exports = {

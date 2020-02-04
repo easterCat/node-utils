@@ -5,3 +5,5 @@ dist.zip
 .project
 .idea
 node_modules/
+.vscode
+.history
