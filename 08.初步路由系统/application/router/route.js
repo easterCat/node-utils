@@ -19,7 +19,7 @@ Route.prototype.handle_method = function(method) {
 };
 
 Route.prototype.get = function(fn) {
-  var layer = new Layer('/', fn);
+  var layer = new Layer(this.path, fn);
   layer.method = 'get';
   this.methods['get'] = true;
   this.stack.push(layer);
