@@ -1,36 +1,14 @@
-var http = require('http');
-var url = require('url');
-var path = require('path');
-var fs = require('fs');
-var Extend = require('../Extend');
-var xz = new Extend(1, 2);
-var Mime = require('../utils/mime');
-var getMime = Mime.getMime;
-var File = require('../utils/file');
-var stat = File.stat;
-var public_path = path.join(__dirname, '../views/');
-var static_path = path.join(__dirname, '../static/');
 var app = require('../application/core/kiana')();
+var port = 3333;
 
-app.get('*', function(req, res) {
-  res.writeHead(404, { 'Content-Type': 'text/plain;charset=utf-8' });
-  res.end('404');
+app.get('/hello', function(req, res) {
+  res.send('hello world');
 });
 
-app.get('/', function(req, res) {
-  readFile(res, path.join(public_path, '/index.html'), 'text/html;charset=utf-8');
+app.get('/world', function(req, res) {
+  res.send('世界你好');
 });
 
-app.listen(3333, function() {
-  console.log('listen at localhost:3333');
+app.listen(port, function() {
+  console.log('listen at localhost:' + port);
 });
-
-function readFile(response, filePath, contentType) {
-  response.writeHead(200, { 'content-type': contentType });
-  var stream = fs.createReadStream(filePath);
-  stream.on('error', function(error) {
-    response.writeHead(500, { 'content-type': contentType });
-    response.end('<h1>500 Server Error</h1>');
-  });
-  stream.pipe(response);
-}

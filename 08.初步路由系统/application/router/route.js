@@ -15,7 +15,7 @@ function Route(path) {
 
 Route.prototype.handle_method = function(method) {
   var name = method.toLowerCase();
-  return Boolean(this.methods[name]);
+  return !!this.methods[name];
 };
 
 Route.prototype.get = function(fn) {
@@ -28,11 +28,12 @@ Route.prototype.get = function(fn) {
 
 Route.prototype.dispatch = function(req, res) {
   var self = this;
+  var stack = self.stack;
   var method = req.method.toLowerCase();
-  var len = self.stack.length;
+  var len = stack.length;
   for (var i = 0; i < len; i++) {
-    if (method === self.stack[i].method) {
-      return self.stack[i].handle_request(req, res);
+    if (method === stack[i].method) {
+      return stack[i].handle_request(req, res);
     }
   }
 };

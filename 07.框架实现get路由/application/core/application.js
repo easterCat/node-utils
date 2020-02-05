@@ -1,4 +1,5 @@
 var http = require('http');
+var url = require('url');
 var Router = require('../router');
 
 var application = {
@@ -8,18 +9,17 @@ var application = {
     var server = http.createServer(function(req, res) {
       if (!res.send) {
         res.send = function(body) {
-          res.writeHead(200, {
-            'Content-Type': 'text/plain'
-          });
+          res.writeHead(200, { 'Content-Type': 'text/plain;charset=utf-8' });
           res.end(body);
         };
       }
 
       var len = self.$router.stack.length;
       var stack = self.$router.stack;
+      var pathname = url.parse(req.url).pathname;
       for (var i = 1; i < len; i++) {
         if (
-          (req.url === stack[i].path || stack[i].path === '*') &&
+          (pathname === stack[i].path || stack[i].path === '*') &&
           (req.method === stack[i].method || stack[i].method === '*')
         ) {
           return stack[i].handle && stack[i].handle(req, res);

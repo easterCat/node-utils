@@ -92,9 +92,7 @@ module.exports = application;
  var server = http.createServer(function(req, res) {
       if (!res.send) {
         res.send = function(body) {
-          res.writeHead(200, {
-            'Content-Type': 'text/plain'
-          });
+          res.writeHead(200, { 'Content-Type': 'text/plain;charset=utf-8' });
           res.end(body);
         };
       }

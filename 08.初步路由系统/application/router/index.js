@@ -1,8 +1,14 @@
+var url = require('url');
 var Layer = require('./layer');
 var Route = require('./route');
 
 function Router() {
-  this.stack = [];
+  this.stack = [
+    new Layer('*', function(req, res) {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end('404');
+    })
+  ];
 }
 
 Router.prototype.get = function(path, fn) {
@@ -11,7 +17,21 @@ Router.prototype.get = function(path, fn) {
   return this;
 };
 
-Router.prototype.route = function route(path) {
+Router.prototype.handle = function(req, res) {
+  var len = this.stack.length;
+  var stack = this.stack;
+  var pathname = url.parse(req.url).pathname;
+  var method = req.method;
+
+  for (var i = 1; i < len; i++) {
+    if (stack[i].match(pathname) && stack[i].route && stack[i].route.handle_method(method)) {
+      return stack[i].handle_request(req, res);
+    }
+  }
+  return stack[0].handle_request(req, res);
+};
+
+Router.prototype.route = function(path) {
   var route = new Route(path);
   var layer = new Layer(path, function(req, res) {
     route.dispatch(req, res);
@@ -19,21 +39,6 @@ Router.prototype.route = function route(path) {
   layer.route = route;
   this.stack.push(layer);
   return route;
-};
-
-Router.prototype.handle = function(req, res) {
-  var self = this;
-  var method = req.method;
-  var url = req.url;
-  var len = self.stack.length;
-
-  for (var i = 1; i < len; i++) {
-    if (self.stack[i].match(url) && self.stack[i].route && self.stack[i].route.handle_method(method)) {
-      return self.stack[i].handle_request(req, res);
-    }
-  }
-
-  return self.stack[0].handle_request(req, res);
 };
 
 module.exports = Router;
