@@ -1,7 +1,6 @@
 var app = require('../application/core/kiana')();
 var port = 3333;
 
-debugger;
 // app.get('/home', function(req, res) {
 //   res.send('hello world');
 // });
