@@ -1,7 +1,6 @@
 {
-  "name": "base_17_express",
+  "name": "express",
   "version": "1.0.0",
-  "description": "the study about nodejs 17 module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

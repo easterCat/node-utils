@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>get</div>
+    <form action="http://127.0.0.1:8081/process_get" method="GET">
+      First Name:
+      <input type="text" name="first_name" />
+      <br />Last Name:
+      <input type="text" name="last_name" />
+      <input type="submit" value="Submit" />
+    </form>
+    <div>post</div>
+    <form action="http://127.0.0.1:8081/process_post" method="POST">
+      First Name:
+      <input type="text" name="first_name" />
+      <br />Last Name:
+      <input type="text" name="last_name" />
+      <input type="submit" value="Submit" />
+    </form>
+    <div>文件上传</div>
+    <form action="/file_upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" size="50" />
+      <br />
+      <input type="submit" value="上传文件" />
+    </form>
+
+    <h1>添加用户</h1>
+    <form action="http://127.0.0.1:8081/add_user" method="GET">
+      <br />姓名:
+      <input type="text" name="name" />
+      <br />密码:
+      <input type="text" name="password" />
+      <br />职业:
+      <input type="text" name="profession" />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

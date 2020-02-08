@@ -14,5 +14,5 @@ app.use('/', indexRouter);
 app.use('/users', userRouter);
 
 const server = app.listen(8081, () => {
-  console.log('应用实例，访问地址为 http://192.168.1.1:8081');
+  console.log('应用实例，访问地址为 http://127.0.0.1:8081');
 });
